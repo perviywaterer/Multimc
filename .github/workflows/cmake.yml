@@ -21,9 +21,10 @@ jobs:
     - uses: actions/checkout@v3
     #- run: sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake
     - run: mkdir /home/runner/work/build
+    - run: mv /home/runner/work/Multimc /home/runner/work/src
     - run: mkdir /home/runner/work/install
     - run: cd /home/runner/work/build
-    - run: cmake -DCMAKE_INSTALL_PREFIX=/home/runner/work/install /home/runner/work/Multimc
+    - run: cmake -DCMAKE_INSTALL_PREFIX=/home/runner/work/install /home/runner/work/src
     - run: make -j $(nproc)
     - uses: actions/upload-artifact@v3
       with:
