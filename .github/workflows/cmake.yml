@@ -18,13 +18,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    #- run: sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake
-    - run: mkdir /home/runner/work/build
-    - run: mv /home/runner/work/Multimc /home/runner/work/src
-    - run: mkdir /home/runner/work/install
-    - run: cd /home/runner/work/build
-    - run: cmake -DCMAKE_INSTALL_PREFIX=/home/runner/work/install /home/runner/work/src
+    - run: mkdir ~/MultiMC && cd ~/MultiMC
+    - run: mkdir build
+    - run: mkdir install
+# clone the complete source
+    - run: git clone --recursive https://github.com/MultiMC/Launcher.git src
+# configure the project
+    - run: cd build
+    - run: cmake -DCMAKE_INSTALL_PREFIX=../install ../src
+# build & install (use -j with the number of cores your CPU has)
     - run: make -j $(nproc)
     - uses: actions/upload-artifact@v3
       with:
