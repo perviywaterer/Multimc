@@ -18,16 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: mkdir ~/MultiMC && cd ~/MultiMC
-    - run: mkdir build
-    - run: mkdir install
-# clone the complete source
+    - run: mkdir ~/1111 && cd ~/1111
     - run: git clone --recursive https://github.com/MultiMC/Launcher.git src
 # configure the project
-    - run: cd build
-    - run: cmake -DCMAKE_INSTALL_PREFIX=../install ../src
-# build & install (use -j with the number of cores your CPU has)
-    - run: make -j $(nproc)
+    - run: cd src
+    - run: bash run.sh
     - uses: actions/upload-artifact@v3
       with:
         name: built
