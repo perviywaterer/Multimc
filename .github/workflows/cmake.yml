@@ -19,11 +19,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake
-    - run: mkdir build
-    - run: mkdir install
-    - run: cd build
-    - run: cmake -DCMAKE_INSTALL_PREFIX=../install ../src
+    #- run: sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake
+    - run: mkdir /home/runner/work/build
+    - run: mkdir /home/runner/work/install
+    - run: cd /home/runner/work/build
+    - run: cmake -DCMAKE_INSTALL_PREFIX=/home/runner/work/install /home/runner/work/Multimc
     - run: make -j $(nproc)
     - uses: actions/upload-artifact@v3
       with:
